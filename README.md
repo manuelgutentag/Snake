@@ -1,1 +1,1 @@
-# Ziel: Python-Modul "Pygame" lernen mit dem Spiel Snake
+snake, mithilfe des pygame-moduls geschrieben
