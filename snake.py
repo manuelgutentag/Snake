@@ -8,23 +8,23 @@ class Snake():
         self.body = [Vector2(4,9), Vector2(4,10), Vector2(4,11)]
         self.direction = Vector2(0,0)
 
-        self.head_up = pygame.image.load('head_up.png').convert_alpha()
-        self.head_down = pygame.image.load('head_down.png').convert_alpha()
-        self.head_right = pygame.image.load('head_right.png').convert_alpha()
-        self.head_left = pygame.image.load('head_left.png').convert_alpha()
+        self.head_up = pygame.image.load('Grafiken/head_up.png').convert_alpha()
+        self.head_down = pygame.image.load('Grafiken/head_down.png').convert_alpha()
+        self.head_right = pygame.image.load('Grafiken/head_right.png').convert_alpha()
+        self.head_left = pygame.image.load('Grafiken/head_left.png').convert_alpha()
 
-        self.tail_up = pygame.image.load('tail_up.png').convert_alpha()
-        self.tail_down = pygame.image.load('tail_down.png').convert_alpha()
-        self.tail_right = pygame.image.load('tail_right.png').convert_alpha()
-        self.tail_left = pygame.image.load('tail_left.png').convert_alpha()
+        self.tail_up = pygame.image.load('Grafiken/tail_up.png').convert_alpha()
+        self.tail_down = pygame.image.load('Grafiken/tail_down.png').convert_alpha()
+        self.tail_right = pygame.image.load('Grafiken/tail_right.png').convert_alpha()
+        self.tail_left = pygame.image.load('Grafiken/tail_left.png').convert_alpha()
 
-        self.body_vertical = pygame.image.load('body_vertical.png').convert_alpha()
-        self.body_horizontal = pygame.image.load('body_horizontal.png').convert_alpha()
+        self.body_vertical = pygame.image.load('Grafiken/body_vertical.png').convert_alpha()
+        self.body_horizontal = pygame.image.load('Grafiken/body_horizontal.png').convert_alpha()
 
-        self.body_br = pygame.image.load('body_br.png').convert_alpha()
-        self.body_bl = pygame.image.load('body_bl.png').convert_alpha()
-        self.body_tr = pygame.image.load('body_tr.png').convert_alpha()
-        self.body_tl = pygame.image.load('body_tl.png').convert_alpha()
+        self.body_br = pygame.image.load('Grafiken/body_br.png').convert_alpha()
+        self.body_bl = pygame.image.load('Grafiken/body_bl.png').convert_alpha()
+        self.body_tr = pygame.image.load('Grafiken/body_tr.png').convert_alpha()
+        self.body_tl = pygame.image.load('Grafiken/body_tl.png').convert_alpha()
 
     def draw_snake(self):
         for index,block in enumerate(self.body):
@@ -138,7 +138,7 @@ class Fruit():
     #x und y position der Frucht
     def __init__(self, snake):
         self.snake = snake
-        self.apple = pygame.image.load('apple.png').convert_alpha()
+        self.apple = pygame.image.load('Grafiken/apple.png').convert_alpha()
 
         self.x = random.randint(0, cell_count - 1)
         self.y = random.randint(0, cell_count - 1)
@@ -179,7 +179,7 @@ class Main():
         self.fruit.draw_fruit()
         self.snake.draw_snake()
         self.draw_score()
-        if self.flag:
+        if self.scoreflag:
             self.draw_controls()
 
     def check_collision_fruit(self):
@@ -240,8 +240,9 @@ game_font = pygame.font.Font(None, 45)
 screen_update = pygame.USEREVENT
 pygame.time.set_timer(screen_update, 150)
 
-flag = True
 maingame = Main()
+
+maingame.scoreflag = True
 
 while True:
     for event in pygame.event.get():
@@ -251,7 +252,7 @@ while True:
         if event.type == screen_update:
             maingame.update()
         if event.type == pygame.KEYDOWN:
-            maingame.flag = False
+            maingame.scoreflag = False
             if event.key == pygame.K_w and int(maingame.snake.direction.y) != 1:
                 maingame.snake.direction = Vector2(0,-1)
             if event.key == pygame.K_s and int(maingame.snake.direction.y) != -1:
