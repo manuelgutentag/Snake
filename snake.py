@@ -43,11 +43,6 @@ class Snake():
                 next_block = self.body[index + 1] - block  # Vektor des nächsten Blocks minus der momentane Vektor
                 prev_block = self.body[index - 1] - block  # Vektor des vorherigen Blocks minus momentaner Vektor
 
-                #print(self.body[index].x, self.body[index].x)
-                #print(self.body[index].y, self.body[index].y)
-                #print(next_block.x, prev_block.x)
-                #print(next_block.y, prev_block.y)
-                #print('')
                 # gerade Körperteile abbilden
                 if next_block.x == -prev_block.x and next_block.y == 0 and prev_block.y == 0:
                     screen.blit(self.body_horizontal, snake_rect)
@@ -132,7 +127,7 @@ class Snake():
     def reset(self):
         self.body = [Vector2(4,9), Vector2(4,10), Vector2(4,11)]
         self.direction = Vector2(0,0)
-        maingame.flag = True
+        maingame.scoreflag = True
 
 class Fruit():
     #x und y position der Frucht
@@ -167,7 +162,7 @@ class Main():
     def __init__(self):
         self.snake = Snake()
         self.fruit = Fruit(self.snake)
-        self.flag = True
+        self.scoreflag = True
 
     def update(self):
         self.snake.move_snake()
@@ -241,8 +236,6 @@ screen_update = pygame.USEREVENT
 pygame.time.set_timer(screen_update, 150)
 
 maingame = Main()
-
-maingame.scoreflag = True
 
 while True:
     for event in pygame.event.get():
